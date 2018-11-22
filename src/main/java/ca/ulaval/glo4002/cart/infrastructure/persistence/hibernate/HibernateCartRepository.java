@@ -13,7 +13,7 @@ public class HibernateCartRepository implements CartRepository {
     @Override
     public List<Cart> listCarts() {
         EntityManager entityManager = EntityManagerProvider.getEntityManager();
-        return entityManager.createQuery("from Carts", Cart.class).getResultList();
+        return entityManager.createQuery("from Cart").getResultList();
     }
 
     @Override
