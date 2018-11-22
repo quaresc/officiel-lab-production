@@ -1,6 +1,7 @@
 package ca.ulaval.glo4002.cart.infrastructure.persistence.memory;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import ca.ulaval.glo4002.cart.domain.shop.ShopItem;
