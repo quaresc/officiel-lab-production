@@ -1,1 +1,1 @@
-web: java -jar -Dport=$PORT -Dparam1=value1 -Dparam2=value2 -Dstore=memory -jar target/cart-0.0.1-SNAPSHOT.jar
+web: java -jar -Dport=$PORT -Dstore=memory -jar target/cart-0.0.1-SNAPSHOT.jar
