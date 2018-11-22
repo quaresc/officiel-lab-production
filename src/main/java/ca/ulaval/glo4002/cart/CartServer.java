@@ -4,6 +4,7 @@ import java.util.EnumSet;
 
 import javax.servlet.DispatcherType;
 
+import ca.ulaval.glo4002.cart.application.ServiceLocator;
 import ca.ulaval.glo4002.cart.application.shop.ItemNotFoundException;
 import ca.ulaval.glo4002.cart.context.ApplicationContext;
 import ca.ulaval.glo4002.cart.interfaces.rest.cart.CartResource;
@@ -18,8 +19,11 @@ import org.eclipse.jetty.servlet.ServletContextHandler;
 import org.eclipse.jetty.servlet.ServletHolder;
 import org.glassfish.jersey.server.ResourceConfig;
 import org.glassfish.jersey.servlet.ServletContainer;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class CartServer implements Runnable {
+    private static final Logger LOGGER = LoggerFactory.getLogger(ServiceLocator.class);
     private static final int PORT = 7222;
 
     public static void main(String[] args) {
@@ -36,7 +40,12 @@ public class CartServer implements Runnable {
     }
 
     private void startServer() {
-        int port = System.getProperty("port").isEmpty() ? PORT : Integer.parseInt(System.getProperty("port"));
+        int port = PORT;
+        try {
+            port = Integer.parseInt(System.getProperty("port"));
+        } catch (Exception e) {
+            LOGGER.warn("Port is not specified, default port " + PORT + " used instead.", e);
+        }
         Server server = new Server(port);
         ServletContextHandler contextHandler = new ServletContextHandler(server, "/");
         contextHandler.addFilter(EntityManagerContextFilter.class, "/*", EnumSet.of(DispatcherType.REQUEST));
