@@ -1,1 +1,1 @@
-web: java -jar -Dport=$PORT -Dstore=memory -jar target/cart-0.0.1-SNAPSHOT.jar
+web: java -jar -Dport=$PORT -Dstore=hibernate -jar target/cart-0.0.1-SNAPSHOT.jar
